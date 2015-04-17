@@ -10,6 +10,7 @@ using namespace boost;
 int main(int argc, char **argv){
 	int exit = 0;	 //Set to 1 when user inputs "exit" to console
 	string commands;
+	vector<string> list;
 	vector<string> clist;
 	while(1){	 //continue prompting until user exits
 		cout << "$ "; // prompt		
@@ -20,18 +21,21 @@ int main(int argc, char **argv){
 		tokenizer< char_separator<char> > mytok(commands,delim);
 
 		for(auto command = mytok.begin(); command != mytok.end() ; ++command) {
-			cout << *command << endl;	
+			list.push_back(*command);	
+		}
+		for(auto i = 0; i < list.size(); i++){
+			cout << list.at(i) << endl;
 		}
 		int i = fork();
 		if(i == -1){
 			perror("fork");
 		}
-		else if(i == 0){
-		//	if(-1 == execvp(command,"a"))
-		//		perror(command);		
+		else if(i == 0){	
+			if(-1 == execvp(list.at(0).c_str(),argv)); 
+				perror(list.at(0).c_str());		
 		}
 		else{
-		//	wait(0);
+			wait(0);
 		}
 	}
 	return 0;
