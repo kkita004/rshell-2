@@ -4,39 +4,52 @@
 #include <sys/wait.h> 
 #include <boost/tokenizer.hpp>
 
-using namespace std;
 using namespace boost;
+using namespace std;
 
 int main(int argc, char **argv){
-	int exit = 0;	 //Set to 1 when user inputs "exit" to console
-	string commands;
-	vector<string> list;
-	vector<string> clist;
 	while(1){	 //continue prompting until user exits
+		string input;
+		vector<string> commands;
+		vector<string> flags;
+		string temp;
+
 		cout << "$ "; // prompt		
-		getline(cin,commands);
+		getline(cin,input);
 
 		//tokenize each command from user input
-		char_separator<char> delim(" ");
-		tokenizer< char_separator<char> > mytok(commands,delim);
+		char_separator<char> delim("; ");
+		tokenizer< char_separator<char> > mytok(input ,delim);
 
 		for(auto command = mytok.begin(); command != mytok.end() ; ++command) {
-			list.push_back(*command);	
+				commands.push_back(*command);	
+				cout << *command << endl; 
 		}
-		for(auto i = 0; i < list.size(); i++){
-			cout << list.at(i) << endl;
-		}
-		int i = fork();
-		if(i == -1){
-			perror("fork");
-		}
-		else if(i == 0){	
-			if(-1 == execvp(list.at(0).c_str(),argv)); 
-				perror(list.at(0).c_str());		
-		}
-		else{
-			wait(0);
-		}
-	}
+		for(size_t i = 0; i < commands.size(); i++){ // loop until every command 
+													// is done or if connector && breaks
+ 			for(size_t i = 0; i < flags.size(); i++){
+				cout << "FLAGS: " << flags.at(i) << endl;	
+ 			}
+
+			if(commands.at(i) == "exit") {
+				exit(0);
+			}
+			
+			int	j = fork();
+	
+			if(j == -1){
+				perror("fork");
+			}
+				
+			else if(j == 0){	
+				if(-1 == execvp(commands.at(i).c_str(),argv)); 
+					perror(commands.at(0).c_str());		
+			}
+
+			else{
+				wait(0);
+			}
+		}	
+	}	
 	return 0;
 }
