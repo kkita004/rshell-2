@@ -9,29 +9,28 @@ using namespace std;
 
 int main(int argc, char **argv){
 	while(1){	 //continue prompting until user exits
-		string input;
 		vector<string> commands;
 		vector<string> flags;
 		string temp;
+		string input;
 
 		cout << "$ "; // prompt		
 		getline(cin,input);
-
-		//tokenize each command from user input
-		char_separator<char> delim("; ");
+		
+		char_separator<char> delim(" ;");
 		tokenizer< char_separator<char> > mytok(input ,delim);
-
 		for(auto command = mytok.begin(); command != mytok.end() ; ++command) {
 				commands.push_back(*command);	
 				cout << *command << endl; 
 		}
+
 		for(size_t i = 0; i < commands.size(); i++){ // loop until every command 
 													// is done or if connector && breaks
  			for(size_t i = 0; i < flags.size(); i++){
 				cout << "FLAGS: " << flags.at(i) << endl;	
  			}
 
-			if(commands.at(i) == "exit") {
+			if(commands.at(i) == "exit") { // fix me
 				exit(0);
 			}
 			
@@ -43,13 +42,15 @@ int main(int argc, char **argv){
 				
 			else if(j == 0){	
 				if(-1 == execvp(commands.at(i).c_str(),argv)); 
-					perror(commands.at(0).c_str());		
+					perror(commands.at(i).c_str());
 			}
 
 			else{
-				wait(0);
+				if(-1 == wait(0))
+					perror("wait");
 			}
 		}	
 	}	
 	return 0;
 }
+
