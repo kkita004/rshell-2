@@ -14,12 +14,15 @@ using namespace std;
 void run(char **command, char **argv);
 string userinput();
 void parse(const string &input, vector<string> &commands, char *del);
+void rmComments(string &s);
 
 int main(int argc, char **argv){
 	while(1){	 //continue prompting until user exits
 		vector<string> commands;
 		cout << "$ "; // prompt		
 		string input = userinput();
+		rmComments(input);
+		cout << "Input after comments removed: " << input << endl;
 		char delim[] = ";";
 		parse(input, commands, delim);
 		const unsigned int size = commands.size();
@@ -58,11 +61,13 @@ void parse(const string &input, vector<string> &commands, char *del){
 void run(char **command, char **argv){
 			int	j = fork();
 			if(j == -1){
-				perror("Error in fork");
+				cout << "rshell: " << flush;
+				perror("fork");
 			}
 				
 			else if(j == 0){	
 				if(-1 == execvp(command[0] , argv)); 
+					cout << "rshell: " << flush;
 					perror(*command);
 			}
 
@@ -72,3 +77,10 @@ void run(char **command, char **argv){
 			}
 }
 
+void rmComments(string &s){
+	size_t loc = string::npos;
+	loc = s.find("#");
+	if(loc != string::npos){
+		s.erase(loc);
+	}
+}
