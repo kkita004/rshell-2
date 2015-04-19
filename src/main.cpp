@@ -1,26 +1,40 @@
 #include <iostream>
+#include <string.h>
 #include <sstream>
 #include <unistd.h>
+#include <vector>
 #include <stdio.h>
+#include <boost/algorithm/string.hpp>
 #include <sys/wait.h> 
 #include <boost/tokenizer.hpp>
 
 using namespace boost;
 using namespace std;
 
-void run(char *command, char **flags);
+void run(char **command, char **argv);
 string userinput();
-void parse(const string &input, vector<string> &commands);
+void parse(const string &input, vector<string> &commands, char *del);
 
-int main(){
+int main(int argc, char **argv){
 	while(1){	 //continue prompting until user exits
 		vector<string> commands;
 		cout << "$ "; // prompt		
 		string input = userinput();
-		parse(input, commands);
-		for(size_t i = 0; i < commands.size(); i++){ // loop until every command 
-													// is done or if connector && breaks		
-			//run(commands.at(i), flag);
+		char delim[] = ";";
+		parse(input, commands, delim);
+		const unsigned int size = commands.size();
+		unsigned csize = 0;
+		for(size_t i = 0; i < size; i++){ // loop until every command is done || exit 
+			trim(commands.at(i));
+			if(commands.at(i) == "exit") 
+				exit(0);
+			csize = commands.at(i).size();
+			char *temp = new char(csize + 1);
+			strcpy(temp, commands.at(i).c_str());
+			temp[csize] = '\0';
+			char **command = &temp;
+			run(command, argv);
+			delete [] temp;
 		}	
 	}	
 	return 0;
@@ -32,26 +46,24 @@ string userinput(){ // get user input
 	return input;
 }
 
-void parse(const string &input, vector<string> &commands){
-	char_separator<char> delim(";");
+void parse(const string &input, vector<string> &commands, char *del){
+	char_separator<char> delim(del);
 	tokenizer< char_separator<char> > mytok(input ,delim);
 	for(auto command = mytok.begin(); command != mytok.end() ; ++command) {
-		commands.push_back(*command);	
+		commands.push_back(*command);
 		cout << "tokenized command: " << *command << endl << flush; 
 	}
-
-		
 }
-void run(char *command, char **flags){
-			int	j = fork();
 
+void run(char **command, char **argv){
+			int	j = fork();
 			if(j == -1){
 				perror("Error in fork");
 			}
 				
 			else if(j == 0){	
-				if(-1 == execvp(command,flags)); 
-					perror("Syntax error");
+				if(-1 == execvp(command[0] , argv)); 
+					perror(*command);
 			}
 
 			else{
