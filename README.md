@@ -18,6 +18,7 @@ The Boost library is required in order to compile this code.
 
 To install Boost on linux run: 
 >$ sudo apt-get install libboost-all-dev
+
 To install on Boost on Mac OS use homebrew and run:
 >$ brew install boost
 
