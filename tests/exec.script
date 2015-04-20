@@ -1,0 +1,122 @@
+Script started on Sun 19 Apr 2015 08:46:24 PM PDT
+~
+unara001@hammer $ cd sc[K[Kcs100/Assn/rshell/
+~/cs100/Assn/rshell
+unara001@hammer $ bin/rshell
+unara001@hammer.cs.ucr.edu$ ls
+a.out  bin  LICENSE  Makefile  README.md  src  tests
+unara001@hammer.cs.ucr.edu$ pwd
+/class/classes/unara001/cs100/Assn/rshell
+unara001@hammer.cs.ucr.edu$ date
+Sun Apr 19 20:46:58 PDT 2015
+unara001@hammer.cs.ucr.edu$ echo hello
+hello
+unara001@hammer.cs.ucr.edu$ #with param
+unara001@hammer.cs.ucr.edu$ ls -a -l
+total 96
+drwx------ 6 unara001 classes  4096 Apr 19 20:30 .
+drwx------ 3 unara001 classes  4096 Apr 15 16:52 ..
+-rwx------ 1 unara001 classes 41704 Apr 16 20:15 a.out
+drwx------ 2 unara001 classes  4096 Apr 19 20:30 bin
+drwx------ 8 unara001 classes  4096 Apr 19 20:15 .git
+-rw------- 1 unara001 classes 18047 Apr 15 16:53 LICENSE
+-rw------- 1 unara001 classes   237 Apr 17 15:32 Makefile
+-rw------- 1 unara001 classes   372 Apr 19 20:15 README.md
+drwx------ 2 unara001 classes  4096 Apr 19 20:23 src
+drwx------ 2 unara001 classes  4096 Apr 19 20:40 tests
+unara001@hammer.cs.ucr.edu$ mkdir testing
+unara001@hammer.cs.ucr.edu$ ls -a 
+.  ..  a.out  bin  .git  LICENSE  Makefile  README.md  src  testing  tests
+unara001@hammer.cs.ucr.edu$ rmdir testing
+unara001@hammer.cs.ucr.edu$ ls
+a.out  bin  LICENSE  Makefile  README.md  src  tests
+unara001@hammer.cs.ucr.edu$ #large num of param
+unara001@hammer.cs.ucr.edu$ ls -a -a -a -a a-    -a -l -l -l -a l-  -l -a -l -l -l -a -a -a -a -a -l -l -a -l -l a -a -a -a -l
+total 96
+drwx------ 6 unara001 classes  4096 Apr 19 20:42 .
+drwx------ 3 unara001 classes  4096 Apr 15 16:52 ..
+-rwx------ 1 unara001 classes 41704 Apr 16 20:15 a.out
+drwx------ 2 unara001 classes  4096 Apr 19 20:30 bin
+drwx------ 8 unara001 classes  4096 Apr 19 20:15 .git
+-rw------- 1 unara001 classes 18047 Apr 15 16:53 LICENSE
+-rw------- 1 unara001 classes   237 Apr 17 15:32 Makefile
+-rw------- 1 unara001 classes   372 Apr 19 20:15 README.md
+drwx------ 2 unara001 classes  4096 Apr 19 20:23 src
+drwx------ 2 unara001 classes  4096 Apr 19 20:40 tests
+unara001@hammer.cs.ucr.edu$ notsr  arealcommand
+rshell: notarealcommand: No such file or directory
+unara001@hammer.cs.ucr.edu$ #p  ls               ls       -a        -l      -a #parsing test
+total 96
+drwx------ 6 unara001 classes  4096 Apr 19 20:42 .
+drwx------ 3 unara001 classes  4096 Apr 15 16:52 ..
+-rwx------ 1 unara001 classes 41704 Apr 16 20:15 a.out
+drwx------ 2 unara001 classes  4096 Apr 19 20:30 bin
+drwx------ 8 unara001 classes  4096 Apr 19 20:15 .git
+-rw------- 1 unara001 classes 18047 Apr 15 16:53 LICENSE
+-rw------- 1 unara001 classes   237 Apr 17 15:32 Makefile
+-rw------- 1 unara001 classes   372 Apr 19 20:15 README.md
+drwx------ 2 unara001 classes  4096 Apr 19 20:23 src
+drwx------ 2 unara001 classes  4096 Apr 19 20:40 tests
+unara001@hammer.cs.ucr.edu$ #test cases for part 2
+unara001@hammer.cs.ucr.edu$ #only my c ; opera     connector currently works
+unara001@hammer.cs.ucr.edu$ ls; pwd; date; echo hello
+a.out  bin  LICENSE  Makefile  README.md  src  tests
+/class/classes/unara001/cs100/Assn/rshell
+Sun Apr 19 20:50:23 PDT 2015
+hello
+unara001@hammer.cs.ucr.edu$ ls; date
+a.out  bin  LICENSE  Makefile  README.md  src  tests
+Sun Apr 19 20:50:31 PDT 2015
+unara001@hammer.cs.ucr.edu$ #cant mix and match due to && and || not working 
+unara001@hammer.cs.ucr.edu$ ;s  date;wd  pwd;ls;echo hello;
+Sun Apr 19 20:51:14 PDT 2015
+/class/classes/unara001/cs100/Assn/rshell
+a.out  bin  LICENSE  Makefile  README.md  src  tests
+hello
+unara001@hammer.cs.ucr.edu$ #eci  xit case  s will be do  ne last
+unara001@hammer.cs.ucr.edu$ #test cases for part 4
+unara001@hammer.cs.ucr.edu$ ls 0l  -l #this is a comment after a command
+total 84
+-rwx------ 1 unara001 classes 41704 Apr 16 20:15 a.out
+drwx------ 2 unara001 classes  4096 Apr 19 20:30 bin
+-rw------- 1 unara001 classes 18047 Apr 15 16:53 LICENSE
+-rw------- 1 unara001 classes   237 Apr 17 15:32 Makefile
+-rw------- 1 unara001 classes   372 Apr 19 20:15 README.md
+drwx------ 2 unara001 classes  4096 Apr 19 20:23 src
+drwx------ 2 unara001 classes  4096 Apr 19 20:40 tests
+unara001@hammer.cs.ucr.edu$ #gthi    this is a comment on a line by itself
+unara001@hammer.cs.ucr.edu$ ls -l#this comment touches the command
+total 84
+-rwx------ 1 unara001 classes 41704 Apr 16 20:15 a.out
+drwx------ 2 unara001 classes  4096 Apr 19 20:30 bin
+-rw------- 1 unara001 classes 18047 Apr 15 16:53 LICENSE
+-rw------- 1 unara001 classes   237 Apr 17 15:32 Makefile
+-rw------- 1 unara001 classes   372 Apr 19 20:15 README.md
+drwx------ 2 unara001 classes  4096 Apr 19 20:23 src
+drwx------ 2 unara001 classes  4096 Apr 19 20:40 tests
+unara001@hammer.cs.ucr.edu$ exit
+unara001@hammer.cs.ucr.edu$ exit
+~/cs100/Assn/rshell
+unara001@hammer $ bn[Kin/rshell
+unara001@hammer.cs.ucr.edu$ ex e  exit -a
+rshell: exit: No such file or directory
+unara001@hammer.cs.ucr.edu$ ls 0 -l  ; exit
+total 84
+-rwx------ 1 unara001 classes 41704 Apr 16 20:15 a.out
+drwx------ 2 unara001 classes  4096 Apr 19 20:30 bin
+-rw------- 1 unara001 classes 18047 Apr 15 16:53 LICENSE
+-rw------- 1 unara001 classes   237 Apr 17 15:32 Makefile
+-rw------- 1 unara001 classes   372 Apr 19 20:15 README.md
+drwx------ 2 unara001 classes  4096 Apr 19 20:23 src
+drwx------ 2 unara001 classes  4096 Apr 19 20:40 tests
+unara001@hammer.cs.ucr.edu$ exit
+~/cs100/Assn/rshell
+unara001@hammer $ bin/rshell
+unara001@hammer.cs.ucr.edu$ exit    bin. /rshell #calling itself
+unara001@hammer.cs.ucr.edu$ exit
+unara001@hammer.cs.ucr.edu$ exit
+~/cs100/Assn/rshell
+unara001@hammer $ exit
+exit
+
+Script done on Sun 19 Apr 2015 08:54:32 PM PDT
