@@ -12,16 +12,17 @@ using namespace boost;
 using namespace std;
 
 int run(string &command); // return -1 if command failed
-string userinput();
-void parse(const string &input, vector<string> &commands, char *del);
-void rmComments(string &s);
+string userinput(); // retrieves inputted commands
+void parse(const string &input, vector<string> &commands, char *del); //parse strings
+void rmComments(string &s); // removes comments from commands
+void prompt(); // prints out terminal prompt
 //void parseCommand(vector<char*> &c, string &command);
 
 int main(int argc, char **argv){
 	while(1){	 //continue prompting until user exits
 		vector<string> commands;
 		int status = 0; // used to check if command was successful
-		cout << "$ "; // prompt		
+		prompt();
 		string input = userinput();
 		rmComments(input); // removes comments from command string
 		char delim[] = ";";
@@ -113,6 +114,20 @@ void rmComments(string &s){
 	}
 }
 
+void prompt(){
+	char *name;
+	name = getlogin();
+	if(name == NULL){
+		perror("getlogin error");
+	}
+	char hostname[64] = ""; // max value of hostname is 64
+	if(-1 == gethostname(hostname, 64)){
+		perror("Hostname retrieval error.");
+	}
+
+	cout << name << "@" << hostname << "$ "; // prompt		
+
+}
 /*void parseCommand(vector<char*> &c, const string &command){
 	int size = command.size();
 	char *token;
