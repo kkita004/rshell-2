@@ -16,7 +16,6 @@ string userinput(); // retrieves inputted commands
 void parse(const string &input, vector<string> &commands, char *del); //parse strings
 void rmComments(string &s); // removes comments from commands
 void prompt(); // prints out terminal prompt
-//void parseCommand(vector<char*> &c, string &command);
 
 int main(int argc, char **argv){
 	while(1){	 //continue prompting until user exits
@@ -61,7 +60,9 @@ void parse(const string &input, vector<string> &commands, char *del){
 }
 
 int run(string &command){
-	int ret = 0;
+	int ret = 0; // return 0 if cmd succeeds -1 if fails
+
+	// parse cmd in order to use as execvp parameter
 	vector<char*> c;
 	int size = command.size();
 	char *token;
@@ -73,36 +74,29 @@ int run(string &command){
 		token = strtok(NULL, " ");
 		c.push_back(token);
 	}
-	c.push_back('\0');
-	char *out = c[0];
-	size_t i = 0;
-	while(out != '\0'){
-		i++;
-		out = c[i];
-	}
+	c.push_back('\0'); // execvp 2nd arg looks for null to end line
 
-	int j = fork();
-	if(j == -1){
+	// call child process and run command
+	pid_t pid = fork();
+	if(pid == -1){
 		cout << "rshell: " << flush;
 		perror("fork");
 		ret = -1;
 	}
-				
-	else if(j == 0){	
+	else if(pid == 0){	
 		if(-1 == execvp(c[0],  &c[0] )){ 
 			cout << "rshell: " << flush;
 			perror(c[0]);
 			ret = -1;
 		}
 	}
-
 	else{
 		if(-1 == wait(0)){
 			perror("wait");
 			ret = -1;
 			}
 	}
-	delete []temp;
+	delete []temp; // delete dynam alloc mem
 	return ret;
 }
 
@@ -128,24 +122,3 @@ void prompt(){
 	cout << name << "@" << hostname << "$ "; // prompt		
 
 }
-/*void parseCommand(vector<char*> &c, const string &command){
-	int size = command.size();
-	char *token;
-	char *temp = new char[size];
-	strcpy(temp, command.c_str());
-	token = strtok(temp, " ");
-	c.push_back(token);
-	while(token != NULL){
-		token = strtok(NULL, " ");
-		c.push_back(token);
-	}
-	c.push_back('\0');
-	char *out = c[0];
-	size_t i = 0;
-	while(out != '\0'){
-		cout << "PC function: " <<  &out << endl;
-		i++;
-		out = c[i];
-	}
-	delete []temp;
-}*/
