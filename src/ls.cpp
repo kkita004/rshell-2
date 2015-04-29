@@ -40,7 +40,7 @@ int main(int argc, char **argv){
 		perror("Fork failed.");
 	}
 	else if(pid == 0){
-		print(argv[1]);
+		printAll(argv[1]);
 	}
 	else{
 		wait(0);
@@ -50,27 +50,44 @@ int main(int argc, char **argv){
 
 void print(char *file){
 	auto dir = opendir(file);
+	if(dir == NULL){
+		perror("opendir failed.");
+		exit(1);
+	}
 	while(auto name = readdir(dir)){
 		if((*name->d_name != '.')){
-			cout << name->d_name << "  ";
+			string test = name->d_name;
+			cout << test << "  ";
 		}	
 	}
 	cout << endl;
-	closedir(dir);
+	if(-1 == closedir(dir)){
+		perror("closedir failed.");
+		exit(1);
+	}
 }
+
 void printAll(char *file){
 	auto dir = opendir(file);
-	while(auto direcp = readdir(dir)){
-		cout << direcp->d_name << " ";
+	if(dir == NULL){
+		perror("opendir failed.");
+		exit(1);
+	}
+	// readdir needs error checking
+	while(auto dirinfo = (readdir(dir))){
+		cout << dirinfo->d_name << " ";
 	}
 	cout << endl;
-	closedir(dir);
+	if(-1 == closedir(dir)){
+		perror("closedir failed.");
+		exit(1);
+	}
 }	
 
 void printL(){
 
 }
 
-void printR(){
+void printR(char *file){
 
 }
