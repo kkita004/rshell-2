@@ -5,7 +5,7 @@ STD=-std=c++11
 all: | bin 
 	g++ $(STD) $(FLAGS) src/main.cpp -o bin/rshell
 	g++ $(STD) $(FLAGS) src/cp.cpp -o bin/cp
-	g++ $(STD) $(FLAGS) src/ls.cpp -0 bin/ls
+	g++ $(STD) $(FLAGS) src/ls.cpp -o bin/ls
 
 rshell: src/main.cpp | bin 
 	g++ $(STD) $(FLAGS) src/main.cpp -o bin/rshell
