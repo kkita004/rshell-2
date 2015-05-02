@@ -1,0 +1,495 @@
+Script started on Fri 01 May 2015 11:42:44 PM PDT
+~
+unara001@hammer $ cs100
+[0;91m
+===============================================================================
+|                                                                             |
+| You have enabled settings specific for cs100.  Everything you do is being   |
+| recorded to measure your progress in the class.                             |
+|                                                                             |
+| Important commands for the class:                                           |
+|   * calcgrade.sh          displays a detailed breakdown of your grade       |
+|   * checksyscalls.sh      is your cpp file doing proper error checking?     |
+|   * typespeed             practice typing unix commands                     |
+|                                                                             |
+| Important commands for general C++ programming:                             |
+|   * make                  don't call g++ manually; let make do the work!    |
+|   * gdb                   the GNU debugger                                  |
+|   * valgrind              get rid of your memory leaks                      |
+|   * cppcheck              static analysis tool                              |
+|   * man                   find help about any syscall / terminal command    |
+|                                                                             |
+===============================================================================
+[0m
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~[0;95m [0;36m$[0m cd cs100/Assn/rshell/
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bi
+bibtex       bibtex8      bind         bioradtopgm  biosdecode   biosdevname  bison        
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bi[K[Kls [K[K[Kmake ls
+g++ -std=c++11 -pedantic -Wall -Werror src/ls.cpp -o bin/ls
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m #we will[K[K[K[K[K[Ke will t[K[K[K[K[K[K[K[K[K[Kbin[K[K[K#we will test ls on its own then with one file followed m[Kby many files
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m biun[K[Kn/ls 
+bin        LICENSE    lstest     Makefile   README.md  
+src        tests      
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls src/
+cp.cpp    ls.cpp    main.cpp  Timer.h   
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls src/ lstest/ bin/ tests/
+src//:
+cp.cpp    ls.cpp    main.cpp  Timer.h   
+
+lstest//:
+t1  t2  t3  t4  
+
+bin//:
+ls  
+
+tests//:
+exec.script  ls.script    
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m #next we will try an inc[Kvalid flag and file
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bi/[Kn/ls -dhsfnsdj
+ls: invalid option '-dhsfnsdj'
+bin        LICENSE    lstest     Makefile   README.md  
+src        tests      
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls dsinfdsfk
+Error stat failed: No such file or directory
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m #now we will rep[Kpeat the ft[Kt[Ke[K[Ktests with each flag
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -a
+.          ..         .git       bin        LICENSE    
+lstest     Makefile   README.md  src        tests      
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -a src/
+.         ..        cp.cpp    ls.cpp    main.cpp  
+Timer.h   
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -a src/ lstest/ tests/ bin/
+src//:
+.         ..        cp.cpp    ls.cpp    main.cpp  
+Timer.h   
+
+lstest//:
+.   ..  t1  t2  t3  
+t4  
+
+tests//:
+.            ..           exec.script  ls.script    
+
+bin//:
+.   ..  ls  
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -a src/ lstest/ tests/ bin/[Kbin/ls -a -l
+drwx------ 7 unara001 classes  4096 May  1 23:32 .
+drwx------ 3 unara001 classes  4096 Apr 15 16:52 ..
+drwx------ 8 unara001 classes  4096 May  1 23:22 .git
+drwx------ 2 unara001 classes  4096 May  1 23:37 bin
+-rw------- 1 unara001 classes 18047 Apr 15 16:53 LICENSE
+drwx------ 6 unara001 classes  4096 May  1 22:43 lstest
+-rw------- 1 unara001 classes   449 May  1 19:23 Makefile
+-rw------- 1 unara001 classes   659 May  1 23:22 README.md
+drwx------ 2 unara001 classes  4096 May  1 23:22 src
+drwx------ 2 unara001 classes  4096 May  1 23:36 tests
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -a -l[K[K[K[Kl
+drwx------ 2 unara001 classes  4096 May  1 23:37 bin
+-rw------- 1 unara001 classes 18047 Apr 15 16:53 LICENSE
+drwx------ 6 unara001 classes  4096 May  1 22:43 lstest
+-rw------- 1 unara001 classes   449 May  1 19:23 Makefile
+-rw------- 1 unara001 classes   659 May  1 23:22 README.md
+drwx------ 2 unara001 classes  4096 May  1 23:22 src
+drwx------ 2 unara001 classes  4096 May  1 23:36 tests
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -l src/
+-rw------- 1 unara001 classes  2274 Apr 28 15:19 cp.cpp
+-rw------- 1 unara001 classes 10499 May  1 23:22 ls.cpp
+-rw------- 1 unara001 classes  2954 Apr 19 21:03 main.cpp
+-rw------- 1 unara001 classes  2698 Apr 28 15:19 Timer.h
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -l src/ lstest/ bin/ tests/
+src//:
+-rw------- 1 unara001 classes  2274 Apr 28 15:19 cp.cpp
+-rw------- 1 unara001 classes 10499 May  1 23:22 ls.cpp
+-rw------- 1 unara001 classes  2954 Apr 19 21:03 main.cpp
+-rw------- 1 unara001 classes  2698 Apr 28 15:19 Timer.h
+
+lstest//:
+drwx------ 2 unara001 classes  4096 May  1 22:44 t1
+drwx------ 2 unara001 classes  4096 May  1 22:44 t2
+drwx------ 2 unara001 classes  4096 May  1 22:44 t3
+drwx------ 2 unara001 classes  4096 May  1 22:45 t4
+
+bin//:
+-rwx------ 1 unara001 classes 120110 May  1 23:37 ls
+
+tests//:
+-rw------- 1 unara001 classes  5797 Apr 19 21:06 exec.script
+-rw------- 1 unara001 classes     0 May  1 23:36 ls.script
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -R 
+./:
+bin        LICENSE    lstest     Makefile   README.md  
+src        tests      
+
+./src/:
+cp.cpp    ls.cpp    main.cpp  Timer.h   
+
+./tests/:
+exec.script  ls.script    
+
+./bin/:
+ls  
+
+./lstest/:
+t1  t2  t3  t4  
+
+./lstest/t1/:
+1     2     3     4     5     
+file  
+
+./lstest/t2/:
+6     7     8     9     file  
+
+./lstest/t3/:
+file10  file11  file12  
+
+./lstest/t4/:
+file13  file14  
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -R src/
+src/:
+cp.cpp    ls.cpp    main.cpp  Timer.h   
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -R src/ lstest/ tests/ bin/
+src//:
+src/:
+cp.cpp    ls.cpp    main.cpp  Timer.h   
+
+lstest//:
+lstest/:
+t1  t2  t3  t4  
+
+lstest/t1/:
+1     2     3     4     5     
+file  
+
+lstest/t2/:
+6     7     8     9     file  
+
+lstest/t3/:
+file10  file11  file12  
+
+lstest/t4/:
+file13  file14  
+
+tests//:
+tests/:
+exec.script  ls.script    
+
+bin//:
+bin/:
+ls  
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -l -a 
+drwx------ 7 unara001 classes  4096 May  1 23:32 .
+drwx------ 3 unara001 classes  4096 Apr 15 16:52 ..
+do_ypcall: clnt_call: RPC: Unable to send; errno = Operation not permitted
+drwx------ 8 unara001 classes  4096 May  1 23:22 .git
+drwx------ 2 unara001 classes  4096 May  1 23:37 bin
+-rw------- 1 unara001 classes 18047 Apr 15 16:53 LICENSE
+drwx------ 6 unara001 classes  4096 May  1 22:43 lstest
+-rw------- 1 unara001 classes   449 May  1 19:23 Makefile
+-rw------- 1 unara001 classes   659 May  1 23:22 README.md
+drwx------ 2 unara001 classes  4096 May  1 23:22 src
+drwx------ 2 unara001 classes  4096 May  1 23:36 tests
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -l -a Makefile 
+-rw------- 1 unara001 classes 449 May  1 19:23 Makefile
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -l -a Makefile src/ bin/ t[Klstest/t[K tests/
+Makefile/:
+do_ypcall: clnt_call: RPC: Unable to send; errno = Operation not permitted
+-rw------- 1 unara001 classes 449 May  1 19:23 Makefile
+
+src//:
+drwx------ 2 unara001 classes  4096 May  1 23:22 .
+drwx------ 7 unara001 classes  4096 May  1 23:32 ..
+-rw------- 1 unara001 classes  2274 Apr 28 15:19 cp.cpp
+do_ypcall: clnt_call: RPC: Unable to send; errno = Operation not permitted
+-rw------- 1 unara001 classes 10499 May  1 23:22 ls.cpp
+-rw------- 1 unara001 classes  2954 Apr 19 21:03 main.cpp
+-rw------- 1 unara001 classes  2698 Apr 28 15:19 Timer.h
+
+bin//:
+drwx------ 2 unara001 classes  4096 May  1 23:37 .
+drwx------ 7 unara001 classes  4096 May  1 23:32 ..
+-rwx------ 1 unara001 classes 120110 May  1 23:37 ls
+
+lstest//:
+do_ypcall: clnt_call: RPC: Unable to send; errno = Operation not permitted
+drwx------ 6 unara001 classes  4096 May  1 22:43 .
+drwx------ 7 unara001 classes  4096 May  1 23:32 ..
+drwx------ 2 unara001 classes  4096 May  1 22:44 t1
+drwx------ 2 unara001 classes  4096 May  1 22:44 t2
+drwx------ 2 unara001 classes  4096 May  1 22:44 t3
+do_ypcall: clnt_call: RPC: Unable to send; errno = Operation not permitted
+drwx------ 2 unara001 classes  4096 May  1 22:45 t4
+
+tests//:
+drwx------ 2 unara001 classes  4096 May  1 23:36 .
+do_ypcall: clnt_call: RPC: Unable to send; errno = Operation not permitted
+drwx------ 7 unara001 classes  4096 May  1 23:32 ..
+-rw------- 1 unara001 classes  5797 Apr 19 21:06 exec.script
+-rw------- 1 unara001 classes     0 May  1 23:36 ls.script
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -l -a Makefile src/ bin/ lstest/ tests/[Kbin/ls -R -a /l
+lib/        lib64/      lost+found/ 
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -R -a /l[K[Klstest/
+lstest/:
+.   ..  t1  t2  t3  
+t4  
+
+lstest/t1/:
+.     ..    1     2     3     
+4     5     file  
+
+lstest/t2/:
+.     ..    6     7     8     
+9     file  
+
+lstest/t3/:
+.       ..      file10  file11  file12  
+
+lstest/t4/:
+.       ..      file13  file14  
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -R -a lstest/ src/ tests/ bin/
+lstest//:
+lstest/:
+.   ..  t1  t2  t3  
+t4  
+
+lstest/t1/:
+.     ..    1     2     3     
+4     5     file  
+
+lstest/t2/:
+.     ..    6     7     8     
+9     file  
+
+lstest/t3/:
+.       ..      file10  file11  file12  
+
+lstest/t4/:
+.       ..      file13  file14  
+
+src//:
+src/:
+.         ..        cp.cpp    ls.cpp    main.cpp  
+Timer.h   
+
+tests//:
+tests/:
+.            ..           exec.script  ls.script    
+
+bin//:
+bin/:
+.   ..  ls  
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -R -a lstest/ src/ tests/ bin/[K src/ tests/ bin/[K[K[K[K[K[K[K[Kl-l[C lstest/
+lstest/:
+drwx------ 6 unara001 classes  4096 May  1 22:43 .
+drwx------ 7 unara001 classes  4096 May  1 23:32 ..
+drwx------ 2 unara001 classes  4096 May  1 22:44 t1
+drwx------ 2 unara001 classes  4096 May  1 22:44 t2
+drwx------ 2 unara001 classes  4096 May  1 22:44 t3
+drwx------ 2 unara001 classes  4096 May  1 22:45 t4
+
+lstest/t1/:
+drwx------ 2 unara001 classes  4096 May  1 22:44 .
+drwx------ 6 unara001 classes  4096 May  1 22:43 ..
+-rw------- 1 unara001 classes     0 May  1 22:44 1
+-rw------- 1 unara001 classes     0 May  1 22:44 2
+-rw------- 1 unara001 classes     0 May  1 22:44 3
+-rw------- 1 unara001 classes     0 May  1 22:44 4
+-rw------- 1 unara001 classes     0 May  1 22:44 5
+-rw------- 1 unara001 classes     0 May  1 22:44 file
+
+lstest/t2/:
+drwx------ 2 unara001 classes  4096 May  1 22:44 .
+drwx------ 6 unara001 classes  4096 May  1 22:43 ..
+-rw------- 1 unara001 classes     0 May  1 22:44 6
+-rw------- 1 unara001 classes     0 May  1 22:44 7
+-rw------- 1 unara001 classes     0 May  1 22:44 8
+-rw------- 1 unara001 classes     0 May  1 22:44 9
+-rw------- 1 unara001 classes     0 May  1 22:44 file
+
+lstest/t3/:
+drwx------ 2 unara001 classes  4096 May  1 22:44 .
+drwx------ 6 unara001 classes  4096 May  1 22:43 ..
+-rw------- 1 unara001 classes     0 May  1 22:44 file10
+-rw------- 1 unara001 classes     0 May  1 22:44 file11
+-rw------- 1 unara001 classes     0 May  1 22:44 file12
+
+lstest/t4/:
+drwx------ 2 unara001 classes  4096 May  1 22:45 .
+drwx------ 6 unara001 classes  4096 May  1 22:43 ..
+-rw------- 1 unara001 classes     0 May  1 22:45 file13
+-rw------- 1 unara001 classes     0 May  1 22:45 file14
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -R -a -l lstest/ src/ Makefile  bin/ tests/ 
+lstest//:
+lstest/:
+drwx------ 6 unara001 classes  4096 May  1 22:43 .
+drwx------ 7 unara001 classes  4096 May  1 23:32 ..
+drwx------ 2 unara001 classes  4096 May  1 22:44 t1
+do_ypcall: clnt_call: RPC: Unable to send; errno = Operation not permitted
+drwx------ 2 unara001 classes  4096 May  1 22:44 t2
+drwx------ 2 unara001 classes  4096 May  1 22:44 t3
+drwx------ 2 unara001 classes  4096 May  1 22:45 t4
+
+lstest/t1/:
+drwx------ 2 unara001 classes  4096 May  1 22:44 .
+drwx------ 6 unara001 classes  4096 May  1 22:43 ..
+-rw------- 1 unara001 classes     0 May  1 22:44 1
+-rw------- 1 unara001 classes     0 May  1 22:44 2
+-rw------- 1 unara001 classes     0 May  1 22:44 3
+-rw------- 1 unara001 classes     0 May  1 22:44 4
+-rw------- 1 unara001 classes     0 May  1 22:44 5
+-rw------- 1 unara001 classes     0 May  1 22:44 file
+
+lstest/t2/:
+drwx------ 2 unara001 classes  4096 May  1 22:44 .
+drwx------ 6 unara001 classes  4096 May  1 22:43 ..
+-rw------- 1 unara001 classes     0 May  1 22:44 6
+do_ypcall: clnt_call: RPC: Unable to send; errno = Operation not permitted
+-rw------- 1 unara001 classes     0 May  1 22:44 7
+-rw------- 1 unara001 classes     0 May  1 22:44 8
+-rw------- 1 unara001 classes     0 May  1 22:44 9
+-rw------- 1 unara001 classes     0 May  1 22:44 file
+
+lstest/t3/:
+drwx------ 2 unara001 classes  4096 May  1 22:44 .
+drwx------ 6 unara001 classes  4096 May  1 22:43 ..
+-rw------- 1 unara001 classes     0 May  1 22:44 file10
+-rw------- 1 unara001 classes     0 May  1 22:44 file11
+-rw------- 1 unara001 classes     0 May  1 22:44 file12
+
+lstest/t4/:
+drwx------ 2 unara001 classes  4096 May  1 22:45 .
+drwx------ 6 unara001 classes  4096 May  1 22:43 ..
+-rw------- 1 unara001 classes     0 May  1 22:45 file13
+-rw------- 1 unara001 classes     0 May  1 22:45 file14
+
+src//:
+src/:
+drwx------ 2 unara001 classes  4096 May  1 23:22 .
+drwx------ 7 unara001 classes  4096 May  1 23:32 ..
+-rw------- 1 unara001 classes  2274 Apr 28 15:19 cp.cpp
+-rw------- 1 unara001 classes 10499 May  1 23:22 ls.cpp
+-rw------- 1 unara001 classes  2954 Apr 19 21:03 main.cpp
+-rw------- 1 unara001 classes  2698 Apr 28 15:19 Timer.h
+
+Makefile/:
+-rw------- 1 unara001 classes 449 May  1 19:23 Makefile
+
+bin//:
+bin/:
+drwx------ 2 unara001 classes  4096 May  1 23:37 .
+drwx------ 7 unara001 classes  4096 May  1 23:32 ..
+-rwx------ 1 unara001 classes 120110 May  1 23:37 ls
+
+tests//:
+tests/:
+drwx------ 2 unara001 classes  4096 May  1 23:36 .
+drwx------ 7 unara001 classes  4096 May  1 23:32 ..
+do_ypcall: clnt_call: RPC: Unable to send; errno = Operation not permitted
+-rw------- 1 unara001 classes  5797 Apr 19 21:06 exec.script
+-rw------- 1 unara001 classes     0 May  1 23:36 ls.script
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls  [K-l -R
+./:
+drwx------ 2 unara001 classes  4096 May  1 23:37 bin
+-rw------- 1 unara001 classes 18047 Apr 15 16:53 LICENSE
+drwx------ 6 unara001 classes  4096 May  1 22:43 lstest
+-rw------- 1 unara001 classes   449 May  1 19:23 Makefile
+-rw------- 1 unara001 classes   659 May  1 23:22 README.md
+drwx------ 2 unara001 classes  4096 May  1 23:22 src
+drwx------ 2 unara001 classes  4096 May  1 23:36 tests
+
+./bin/:
+-rwx------ 1 unara001 classes 120110 May  1 23:37 ls
+
+./lstest/:
+drwx------ 2 unara001 classes  4096 May  1 22:44 t1
+drwx------ 2 unara001 classes  4096 May  1 22:44 t2
+drwx------ 2 unara001 classes  4096 May  1 22:44 t3
+drwx------ 2 unara001 classes  4096 May  1 22:45 t4
+
+./lstest/t1/:
+-rw------- 1 unara001 classes     0 May  1 22:44 1
+-rw------- 1 unara001 classes     0 May  1 22:44 2
+-rw------- 1 unara001 classes     0 May  1 22:44 3
+-rw------- 1 unara001 classes     0 May  1 22:44 4
+-rw------- 1 unara001 classes     0 May  1 22:44 5
+-rw------- 1 unara001 classes     0 May  1 22:44 file
+
+./lstest/t2/:
+-rw------- 1 unara001 classes     0 May  1 22:44 6
+-rw------- 1 unara001 classes     0 May  1 22:44 7
+-rw------- 1 unara001 classes     0 May  1 22:44 8
+-rw------- 1 unara001 classes     0 May  1 22:44 9
+-rw------- 1 unara001 classes     0 May  1 22:44 file
+
+./lstest/t3/:
+-rw------- 1 unara001 classes     0 May  1 22:44 file10
+-rw------- 1 unara001 classes     0 May  1 22:44 file11
+-rw------- 1 unara001 classes     0 May  1 22:44 file12
+
+./lstest/t4/:
+-rw------- 1 unara001 classes     0 May  1 22:45 file13
+-rw------- 1 unara001 classes     0 May  1 22:45 file14
+
+./src/:
+-rw------- 1 unara001 classes  2274 Apr 28 15:19 cp.cpp
+-rw------- 1 unara001 classes 10499 May  1 23:22 ls.cpp
+-rw------- 1 unara001 classes  2954 Apr 19 21:03 main.cpp
+-rw------- 1 unara001 classes  2698 Apr 28 15:19 Timer.h
+
+./tests/:
+-rw------- 1 unara001 classes  5797 Apr 19 21:06 exec.script
+-rw------- 1 unara001 classes     0 May  1 23:36 ls.script
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m bin/ls -l -R lstest/[1P lstest/[1P lstest/[1Plstest/R lstest/[C[C[C[C[C[C[C[C b [K[K.[K/b[K[Kbin/ tests/ src/r[K
+lstest//:
+lstest/:
+drwx------ 2 unara001 classes  4096 May  1 22:44 t1
+drwx------ 2 unara001 classes  4096 May  1 22:44 t2
+drwx------ 2 unara001 classes  4096 May  1 22:44 t3
+drwx------ 2 unara001 classes  4096 May  1 22:45 t4
+
+lstest/t1/:
+-rw------- 1 unara001 classes     0 May  1 22:44 1
+-rw------- 1 unara001 classes     0 May  1 22:44 2
+-rw------- 1 unara001 classes     0 May  1 22:44 3
+-rw------- 1 unara001 classes     0 May  1 22:44 4
+-rw------- 1 unara001 classes     0 May  1 22:44 5
+-rw------- 1 unara001 classes     0 May  1 22:44 file
+
+lstest/t2/:
+-rw------- 1 unara001 classes     0 May  1 22:44 6
+-rw------- 1 unara001 classes     0 May  1 22:44 7
+-rw------- 1 unara001 classes     0 May  1 22:44 8
+-rw------- 1 unara001 classes     0 May  1 22:44 9
+-rw------- 1 unara001 classes     0 May  1 22:44 file
+
+lstest/t3/:
+-rw------- 1 unara001 classes     0 May  1 22:44 file10
+-rw------- 1 unara001 classes     0 May  1 22:44 file11
+-rw------- 1 unara001 classes     0 May  1 22:44 file12
+
+lstest/t4/:
+-rw------- 1 unara001 classes     0 May  1 22:45 file13
+-rw------- 1 unara001 classes     0 May  1 22:45 file14
+
+bin//:
+bin/:
+-rwx------ 1 unara001 classes 120110 May  1 23:37 ls
+
+tests//:
+tests/:
+-rw------- 1 unara001 classes  5797 Apr 19 21:06 exec.script
+-rw------- 1 unara001 classes     0 May  1 23:36 ls.script
+
+src//:
+src/:
+-rw------- 1 unara001 classes  2274 Apr 28 15:19 cp.cpp
+do_ypcall: clnt_call: RPC: Unable to send; errno = Operation not permitted
+-rw------- 1 unara001 classes 10499 May  1 23:22 ls.cpp
+-rw------- 1 unara001 classes  2954 Apr 19 21:03 main.cpp
+-rw------- 1 unara001 classes  2698 Apr 28 15:19 Timer.h
+[s%%%%%%%%%%[u[0;32munara001[0;36m@[0;32mcs100[0;36m:[0;32m~/cs100/Assn/rshell[0;95m (master) [0;36m$[0m exit
+exit
+~
+unara001@hammer $ exit
+exit
+
+Script done on Fri 01 May 2015 11:47:38 PM PDT
